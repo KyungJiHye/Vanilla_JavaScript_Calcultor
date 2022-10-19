@@ -1,0 +1,138 @@
+* {
+  margin : 0;
+  padding: 0;
+  /* 박스의 크기 기준을 뭐로 잡을 지 정하는 속성
+  border-box : 테두리 기준 (500px 지정 -> 테두리까지 포함해서 500px
+  content-box : 컨텐츠 영역 기준 (500xp 지정 -> 컨텐츠 영역만 500이고
+  테두리 포함하면 지정값에 따라 + a)
+  참고 : https://www.codingfactory.net/10630 */
+  box-sizing: border-box;
+}
+
+.main_box {
+  /* flex : 레이아웃 배치 기능
+  내용물의 width 값 만큼만 차지하고 가로방향으로 나열됨 
+  참고 : 하단 flex 셋팅 값도 해당 블로그 참고했음
+  https://studiomeal.com/archives/197 */
+  display: flex;
+  /* vh, vw : 뷰포트의 너비값과 높이값에 맞게 사용할 수 있음 
+    1vh = (브라우저 높이값 / 100) 
+    참고 : https://webclub.tistory.com/356 */
+  height: 100vh;
+  /* justify : *메인축 방향으로 정렬
+  * flex-derection 기준 / flex-start(시작점 정렬)
+      row : 가로배치 / 왼쪽
+      column : 세로배치 / 위
+    center : 가운데 정렬*/
+  justify-content: center;
+  /* align : *수직축 방향 정렬
+  * flex-derection 기준 / flex-start (시작점 정렬)
+      row : 가로배치 / 위
+      column : 세로배치 / 왼쪽
+    center : 가운데 정렬 */
+  align-items: center;
+}
+
+.cal {
+  /* https://studiomeal.com/archives/533
+  grid 설명 해당 블로그 참고 */
+  display : grid;
+  /* grid-template-columns(rows) : 열(행)의 배치
+  fr : 앞에 오는 숫자 비율 대로 트랙의 크기를 나눔
+  (고정크기( --px)와 가변 크기(2fr 1fr auto)를 섞어 사용 가능 
+  repeat : 반복 값 처리 함수 (반복횟수, 반복값)
+  grid cell 을 4개씩 나눠가며 1:1:1:1 비율로 나누겠다*/
+  grid-template-columns : repeat(4, 1fr);
+  background-color : rgb(0, 0, 0);
+  /* 반응형 웹페이지 - 상대적 크기 단위 em, rem
+    폰트사이즈에 비례해서 크기가 결정된다.
+    폰트사이즈 * (r)em = px 
+    em 은 해당 단위가 사용되고 있는 요소의 폰트사이즈 기준
+    rem은 html 요소의 폰트사이즈 기준
+    em 사용 중 해당 요소의 폰트사이즈가 없을 경우 부모노드의 사이즈를 상속받음 -> 근데 부모노드도 em 사용 중일 시 계산하기 어려우니 초보자는 rem을 사용하자*/
+  padding : 1.5rem 1rem 2rem;
+  border-radius : 1.5rem;
+  box-shadow : gray 0px 10px 20px -5px;
+  border : 5px solid rgb(74, 71, 71);
+}
+
+.display_box {
+  /* 셀의 영역을 지정한 것
+  start(라인시작번호) end(라인끝번호) 속성을 한번에 사용한 축약형
+  해당 display_box에 있는 grid-item은 셀 4칸 차지해라 */
+  grid-column: span 4;
+  background-color: rgb(0, 0, 0);
+  color : white;
+  text-align: end;
+  margin: 0.6rem;
+  padding: 1rem;
+  width : cal(200px + 1.5rem) ;
+  height : 7rem;
+  /* html 상에서 요소가 배치되는 방식을 결정
+  기본적으로 static 적용 : html 작성된 순서 그대로 브라우저 화면에 표시
+  top,left 등의 속성값은 static일 경우 무시됨
+  relative : 원래 위치를 기준으로 상대적으로 배치해줌
+  top,left,right,bottom 이용
+  absolute : 자신이 아닌 상위요소에서 배치기준을 찾음 
+  DOM 트리를 따라 올라가다 position 속성이 static이 아닌 첫번째 상위요소가
+  해당 요소의 배치기준이 됨 (상위에 없다면 최상위 body가 배치기준)
+  보통은 부모요소에 relative 지정해주는게 관례*/
+  position: relative;
+  font-size: 1.2rem;
+  /* 주어진 공간을 빠져나가는 컨텐츠는 숨겨줌
+  기본값은 visible 로 경계선 밖으로 삐져나옴 
+  컨텐츠 양이 가변적일 경우 auto 속성 지정 -> 공간 넘어서면 스크롤바 생성됨
+  가로 방향 스크롤 바 생성 법 : white-space : nowrap 으로 지정*/
+  overflow: hidden;
+}
+
+.cal_dis {
+  /* 이전 계산식 값 1개 띄우는 창 */
+  /* 요소의 투명도 결정
+  기본값은 1, 0.0~1.0까지의 숫자 입력, inherit : 부모요소 속성값 상속받음 */
+  opacity: .6;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.Result_dis {
+  font-size : 1.8rem
+}
+
+.add_fun {
+  display: grid;
+  grid-template-columns : 3fr 1fr;
+  grid-column: span 4;
+  position: relative;
+}
+
+.button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  margin: .3rem;
+  font-size : 1.3rem;
+  background-color: rgb(67, 73, 74);
+  color : white;
+}
+
+.button:nth-child(1),
+.button:nth-child(2),
+.button:nth-child(4),
+.button:nth-child(5),
+.button:nth-child(6),
+.button:nth-child(10),
+.button:nth-child(14),
+.button:nth-child(18),
+.button:nth-child(19),
+.button:nth-child(21) {
+  background-color: darkslateblue;
+}
+
+.button:nth-child(3),
+.button:nth-child(22) {
+  font-size : 1.7rem;
+  color : red;
+  background-color: darkslateblue;
+}

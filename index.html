@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vanilla JavaScript Calculator</title>
+  <link rel = "stylesheet" href = "CSS/style.css">
+</head>
+<body>
+  <div class = "main_box">
+    <div class = "cal">
+
+      <div class = "display_box">
+        <!-- 계산식 띄우는 창 -->
+        <div class = "cal_dis"> 0 </div>
+        <!-- 입력+결과 창 -->
+        <div class = "Result_dis"> 0 </div>
+      </div>
+
+      <div class = "add_fun">
+        <!-- 기록 이모티콘 유니코드 -->
+        <button class = "button his"> &#9997; </button> 
+        <!-- 뒤로 가는 화살표 유니코드 -->
+        <button class = "button back"> &#8592; </button>
+      </div>
+      
+      <!-- 계산 중인 내역 전체 삭제 -->
+      <button class = "button AllClear"> C </button>
+      <!-- () 유니코드 -->
+      <button class = "button oper"> ( ) </button>
+      <!-- % 유니코드 -->
+      <button class = "button oper"> % </button>
+      <!-- / 유니코드 -->
+      <button class = "button oper"> / </button>
+      <button class = "button num"> 7 </button>
+      <button class = "button num"> 8 </button>
+      <button class = "button num"> 9 </button>
+      <!-- * 유니코드 -->
+      <button class = "button oper"> * </button>
+      <button class = "button num"> 4 </button>
+      <button class = "button num"> 5 </button>
+      <button class = "button num"> 6 </button>
+      <!-- - 유니코드 -->
+      <button class = "button oper"> - </button>
+      <button class = "button num"> 1 </button>
+      <button class = "button num"> 2 </button>
+      <button class = "button num"> 3 </button>
+      <!-- + 유니코드 -->
+      <button class = "button oper"> + </button>
+      <!-- +\- 음수양수변환 유니코드 -->
+      <button class = "button nega_posi_num"> + / - </button>
+      <button class = "button num"> 0 </button>
+      <!-- . 유니코드 -->
+      <button class = "button oper"> . </button>
+      <!-- = 유니코드 -->
+      <button class = "button equal"> = </button>
+    </div>
+  </div>
+  <script src = "JS/vanilla_calculator.js"></script>
+</body>
+</html>
