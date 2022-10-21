@@ -2,13 +2,9 @@
 
 const cal_disEl = document.querySelector(".cal_dis");
 const Result_disEl = document.querySelector(".Result_dis");
-const add_funEl = document.querySelectorAll(".add_fun");
 const numEl = document.querySelectorAll(".num");
 const operEl = document.querySelectorAll(".oper");
-const hisEl = document.querySelector(".his");
-const backEl = document.querySelector(".back");
 const acEl = document.querySelector(".AllClear");
-const negaPosiNumEl = document.querySelector(".nega_posi_num");
 const equalEl = document.querySelector(".equal");
 
 
@@ -44,6 +40,21 @@ numEl.forEach(number => {
     // 클릭한 숫자 변수에 넣고 변수 값을 출력
     Result_dis_Num += e.target.innerText;
     Result_disEl.innerText = Result_dis_Num
+
+
+    //0으로 나눗셈이 있을 때 막기위한 플래그 초기화
+    let zeroDivisionFlag=false;
+    //연산자가 /이고 와 연산자 뒤의 숫자가 0인게 발견되면 플래그를 활성화
+    if(lastOper == "/" && Result_dis_Num == 0){
+        zeroDivisionFlag=true;
+    }
+     
+    //플래그가 활성화된 상태면
+    if(zeroDivisionFlag){
+      //경고 출력
+      alert("0으로 나누는 식이 있습니다.");
+      ACEvent();
+    }
   })
 })
 
@@ -127,13 +138,17 @@ equalEl.addEventListener("click", (e) => {
 
 // allclear(C) 클릭시
 
-acEl.addEventListener("click", (e) => {
+function ACEvent() {
   //모든 값 초기화
   Result_disEl.innerText = "0";
   cal_disEl.innerText = "0";
   Result_dis_Num = "";
   cal_dis_Num = "";
   haveDot = false;
+}
+
+acEl.addEventListener("click", (e) => {
+  ACEvent();
 })
 
 
@@ -156,27 +171,15 @@ window.addEventListener("keydown", (e) => {
     clickButtonEl(e.key);
   }
   else if(
-    e.key === "." ||
     e.key === "*" ||
     e.key === "/" ||
     e.key === "+" ||
-    e.key === "-" ||
-    e.key === "%" ||
-    e.key === "(" 
+    e.key === "-" 
   ) {
     clickOperation(e.key)
   }
-  else if(e.key === "h") {
-    clickhis();
-  } 
-  else if(e.key === "z") {
-    clickback();
-  } 
   else if(e.key === ",") {
     clickAC();
-  } 
-  else if(e.key === ",") {
-    clickNegaPosi();
   } 
   else if(e.key === "Enter" || e.key === "=") {
     ClickEqual();
@@ -209,18 +212,6 @@ function ClickEqual() {
   equalEl.click();
 }
 
-function clickNegaPosi() {
-  negaPosiNumEl.click();
-}
-
 function clickAC() {
   acEl.click();
-}
-
-function clickhis() {
-  hisEl.click();
-}
-
-function clickback() {
-  backEl.click();
 }

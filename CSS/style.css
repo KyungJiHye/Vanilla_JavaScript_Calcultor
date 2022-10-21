@@ -99,13 +99,6 @@
   font-size : 1.8rem
 }
 
-.add_fun {
-  display: grid;
-  grid-template-columns : 3fr 1fr;
-  grid-column: span 4;
-  position: relative;
-}
-
 .button {
   width: 50px;
   height: 50px;
@@ -117,21 +110,15 @@
   color : white;
 }
 
-.button:nth-child(1),
-.button:nth-child(2),
-.button:nth-child(4),
 .button:nth-child(5),
-.button:nth-child(6),
-.button:nth-child(10),
-.button:nth-child(14),
-.button:nth-child(18),
-.button:nth-child(19),
-.button:nth-child(21) {
+.button:nth-child(9),
+.button:nth-child(13),
+.button:nth-child(17) {
   background-color: darkslateblue;
 }
 
-.button:nth-child(3),
-.button:nth-child(22) {
+.button:nth-child(14),
+.button:nth-child(16) {
   font-size : 1.7rem;
   color : red;
   background-color: darkslateblue;
